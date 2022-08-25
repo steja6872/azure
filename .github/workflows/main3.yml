@@ -1,0 +1,15 @@
+on: [push]
+name: Delete a Resource Group
+
+jobs:
+ build-and-deploy:
+    runs-on: [windows-latest]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Log in with Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Delete a Resource Group
+      run: az group delete -n MyResourceGroup --yes
+           
